@@ -11,9 +11,10 @@ import AVFoundation
 
 
 //remember, only classes can inherit.
-//must inherit from NSObject so that it can be conformed by AVCapturePhotoCaptureDelegate (based on Objective-C)
+// Must inherit from NSObject to conform to AVCapturePhotoCaptureDelegate (Objective-C based API)
 class CameraManager : NSObject {
-    //act as the pipeline
+    
+    // Acts as the pipeline that connects input → processing → output
     let session  = AVCaptureSession()
     
     // to enable capturing photo as an output
@@ -23,13 +24,13 @@ class CameraManager : NSObject {
         
         session.beginConfiguration()
         
-        //defer will ensure to commit the chnages when exit happens (in whatever scenario) in this function
+        // Always commit configuration when function exits
         defer {
             session.commitConfiguration()
         }
         
         // physical camera
-        // choosing .video since we intersted in Photos
+        // .video refers to the camera (not actual video recording)
         guard let device = AVCaptureDevice.default(for: .video),
               
         // put it in a way that the "session" can understands, must be an input object
@@ -38,12 +39,12 @@ class CameraManager : NSObject {
             return
         }
         
-        // safety check
+        // Add input safely
         if session.canAddInput(input) {
             session.addInput(input)
         }
         
-        // safety check
+        // Add output safely
         if session.canAddOutput(photoOutput){
             session.addOutput(photoOutput)
         }
@@ -66,7 +67,7 @@ class CameraManager : NSObject {
     func capturePhoto() {
         let settings = AVCapturePhotoSettings()
         
-        //request to take the photo
+        // Request to capture a photo → result comes via delegate
         photoOutput.capturePhoto(with: settings, delegate: self)
     }
     
