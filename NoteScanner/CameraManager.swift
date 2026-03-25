@@ -7,7 +7,7 @@
 
 import Foundation
 import AVFoundation
-
+import UIKit
 
 
 //remember, only classes can inherit.
@@ -82,7 +82,10 @@ extension CameraManager : AVCapturePhotoCaptureDelegate {
                      didFinishProcessingPhoto photo: AVCapturePhoto,
                      error: Error?)
     {
-        guard let data = photo.fileDataRepresentation() else { return }
+        guard let data = photo.fileDataRepresentation(),
+              // get the Image
+                let image = UIImage(data : data)
+                else { return }
         print("Photo captured: \(data.count) bytes")
     }
     
