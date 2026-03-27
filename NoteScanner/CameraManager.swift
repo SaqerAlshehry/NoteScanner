@@ -51,19 +51,16 @@ class CameraManager : NSObject {
         
         
     }
-    
     func startSession() {
         if !session.isRunning {
             session.startRunning()
         }
     }
-    
     func stopSession() {
         if session.isRunning {
             session.stopRunning()
         }
     }
-    
     func capturePhoto() {
         let settings = AVCapturePhotoSettings()
         
@@ -72,8 +69,6 @@ class CameraManager : NSObject {
     }
     
 }
-
-
 
 //Delegate gives the result data
 extension CameraManager : AVCapturePhotoCaptureDelegate {

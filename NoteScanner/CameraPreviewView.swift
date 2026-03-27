@@ -12,7 +12,7 @@ import SwiftUI
 
 
 //Since AVCaptureVideoPreviewLayer belongs to UIKit/Core Animation,
-//we use UIViewRepresentable (protocol) to wrap a UIView that contains it, so SwiftUI can display it
+//we use UIViewRepresentable (It is a protocol from UIKit) to wrap a UIView that contains it, so SwiftUI can display it
 struct CameraPreviewView  : UIViewRepresentable{
     
     let session: AVCaptureSession  // camera session to display
