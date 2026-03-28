@@ -6,18 +6,17 @@
 //
 import SwiftUI
 struct NoteCard : View {
-    var date : Date
-    var content : String
+    var note : Note
     var body : some View {
         RoundedRectangle(cornerRadius : 20)
             .fill(.ultraThinMaterial)
             .frame(width : 300, height : 90)
             .overlay(alignment : .leading){
                 VStack(spacing : 8){
-                    Text(date.formatted())
+                    Text(Date().formatted())
                         .font(.system(size : 12,weight: .bold,design: .monospaced))
                         .foregroundColor(.secondary)
-                    Text(content)
+                    Text(note.content)
                         .font(.system(size : 14,weight: .bold,design: .monospaced))
                         .foregroundColor(.primary)
                         .lineLimit(1)
@@ -32,5 +31,5 @@ struct NoteCard : View {
     }
 }
 #Preview{
-    NoteCard(date : Date(), content: "Note Content Note Content Note Content Note Content Note Content Note Content Note Content Note Content Note Content")
+    NoteCard(note : Note(content: "this is a  note this is a  note this is a  note"))
 }
