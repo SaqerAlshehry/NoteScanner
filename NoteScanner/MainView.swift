@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
+
 
 struct MainView: View {
+    
+    @Query var notes : [Note]
+    
     var body: some View {
         VStack {
             Text("Note Scanner Project using AVFoundation Framework!")
